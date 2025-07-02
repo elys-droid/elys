@@ -1,44 +1,603 @@
-@import url('https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Rakkas&display=swap');
+/* style.css */
 
-/* Variáveis */
+/* Estilos Gerais */
 :root {
-    --primary-color: #026773;
-    --secondary-color: #3CA6A6;
-    --text-color: #024959;
-    --background-color: #F2E3D5;
-    --button-hover: #012E40;
-    --font-body: "Chocolate Classical Sans", serif;
-    --font-titulo: "Rakkas", serif;
+    --primary-color: #4CAF50; /* Verde Horta */
+    --secondary-color: #8BC34A; /* Verde Mais Claro */
+    --accent-color: #FFC107; /* Amarelo Sol */
+    --text-color: #333;
+    --light-bg: #F0F4C3; /* Fundo Creme Suave */
+    --dark-bg: #2E7D32; /* Verde Escuro para Footer */
 }
 
-/* código omitido */
-/* código omitido */
-
-/* Reset */
-* {
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: var(--font-body);
-}
-
-/* Corpo da página */
-body {
-    background-color: var(--background-color);
+    background-color: var(--light-bg);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden; /* Evita barra de rolagem horizontal indesejada */
 }
 
-h3 {
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espaço entre título e navegação */
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Espaço entre os itens do menu */
+    flex-wrap: wrap; /* Para telas menores */
+}
+
+header nav ul li a {
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+}
+
+header nav ul li a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+main {
+    padding: 40px 0;
+}
+
+/* Hero Section (Index Page) */
+.hero {
+    background-color: var(--light-bg);
+    text-align: center;
+    padding: 80px 20px;
+    background-image: url('imagens/hero_bg.jpg'); /* Adicione uma imagem de fundo aqui */
+    background-size: cover;
+    background-position: center;
+    color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hero::before { /* Camada escura para melhorar a legibilidade do texto */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Escurece um pouco a imagem de fundo */
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+    color: white; /* Cor do texto no hero */
+}
+
+.hero h2 {
+    font-size: 3.8rem;
+    margin-bottom: 20px;
+    color: white; /* Cor do título */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.hero .btn {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.hero .btn:hover {
+    background-color: #FFDA6B; /* Um pouco mais escuro ao passar o mouse */
+}
+
+
+/* Guia de Plantio */
+.guia-plantio h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.guia-plantio p {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.15rem;
+    color: #555;
+}
+
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.plant-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-bottom: 20px;
+    display: block; /* Para garantir que o link ocupe todo o card */
+}
+
+.plant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.plant-card img {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens dos cards */
+    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+    border-bottom: 1px solid #eee;
+}
+
+.plant-card h3 {
+    margin-top: 20px;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+/* Detalhe da Planta (planta_alface.html, etc.) */
+.plant-detail {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+.plant-detail .plant-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.plant-detail .plant-banner-img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.plant-detail h2 {
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+.plant-detail > p { /* Parágrafo introdutório */
+    font-size: 1.15rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #555;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.plant-detail .info-section {
+    background-color: var(--light-bg); /* Fundo suave para as seções de informação */
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--secondary-color); /* Detalhe lateral */
+}
+
+.plant-detail .info-section h3 {
+    color: var(--secondary-color);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.plant-detail .info-section .icon {
+    width: 32px; /* Tamanho dos ícones */
+    height: 32px;
+}
+
+.plant-detail ul {
+    list-style: none; /* Remove o marcador padrão */
+    padding: 0;
+    margin: 0;
+}
+
+.plant-detail ul li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.plant-detail ul li::before { /* Cria um marcador customizado */
+    content: '•';
+    color: var(--primary-color);
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.plant-detail .back-btn {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 20px auto;
+    text-align: center;
+    background-color: var(--accent-color);
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.plant-detail .back-btn:hover {
+    background-color: #FFDA6B;
+}
+
+
+/* Seção de Compostagem */
+.compostagem {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+.compostagem h2 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.compostagem h3 {
+    color: var(--secondary-color);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.compostagem p {
+    margin-bottom: 15px;
+    text-align: justify;
+    font-size: 1.05rem;
+}
+
+.calculator-section {
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    text-align: center;
+    border-left: 5px solid var(--accent-color);
+}
+
+.calculator-section label,
+.calculator-section select,
+.calculator-section input,
+.calculator-section button {
+    display: block;
+    margin: 15px auto;
+    width: calc(100% - 40px); /* Ajuste para padding */
+    max-width: 400px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    box-sizing: border-box; /* Inclui padding na largura */
+}
+
+.calculator-section button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 1.2rem;
     margin-top: 25px;
 }
 
-p {
+.calculator-section button:hover {
+    background-color: var(--secondary-color);
+}
+
+.calculator-result {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e6ffe6; /* Um verde bem claro */
+    border: 1px solid #a8e8a8;
+    border-radius: 8px;
+    text-align: left;
+    display: none; /* Inicia oculto */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    color: #2E7D32; /* Texto verde escuro */
+}
+
+.calculator-result p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+.calculator-result p strong {
+    color: var(--primary-color);
+}
+
+.compostagem ul {
+    list-style: none; /* Remove o marcador padrão */
+    padding: 0;
     margin-top: 20px;
 }
 
-img {
-    max-width: 90%;
+.compostagem ul li {
+    margin-bottom: 12px;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.05rem;
 }
 
-/* código omitido */
+.compostagem ul li::before { /* Marcador customizado */
+    content: '🌱'; /* Ícone de folha ou outro de sua preferência */
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 1.1em;
+    top: 0;
+}
+
+/* Dicas e Artigos */
+.dicas-artigos {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+.dicas-artigos h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.dicas-artigos > p { /* Parágrafo introdutório */
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.15rem;
+    color: #555;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.article-card {
+    background-color: var(--light-bg); /* Fundo suave para os cards */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid var(--primary-color);
+}
+
+.article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.article-card h3 {
+    color: var(--secondary-color);
+    margin-top: 0;
+    font-size: 1.7rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.article-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.article-card .read-more {
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--accent-color);
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.article-card .read-more:hover {
+    color: #FFDA6B;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-bg);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 60px; /* Mais espaço antes do footer */
+    font-size: 0.95rem;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .hero h2 {
+        font-size: 3rem;
+    }
+    .plant-detail h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    header nav ul {
+        gap: 15px;
+    }
+    .hero {
+        padding: 60px 15px;
+    }
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .guia-plantio h2, .compostagem h2, .dicas-artigos h2 {
+        font-size: 2rem;
+    }
+    .plant-grid, .article-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+    .plant-detail {
+        padding: 25px;
+    }
+    .plant-detail h2 {
+        font-size: 2rem;
+    }
+    .plant-detail .info-section h3 {
+        font-size: 1.5rem;
+    }
+    .calculator-section label,
+    .calculator-section select,
+    .calculator-section input,
+    .calculator-section button {
+        max-width: 95%; /* Ocupa quase toda a largura */
+    }
+}
+
+@media (max-width: 480px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    header nav ul li a {
+        padding: 5px 10px;
+        font-size: 0.85rem;
+    }
+    .hero {
+        padding: 40px 10px;
+    }
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    .hero p {
+        font-size: 0.95rem;
+    }
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    .guia-plantio h2, .compostagem h2, .dicas-artigos h2 {
+        font-size: 1.8rem;
+    }
+    .plant-detail h2 {
+        font-size: 1.8rem;
+    }
+    .plant-detail .info-section h3 {
+        font-size: 1.3rem;
+    }
+    .calculator-section {
+        padding: 20px;
+    }
+    .article-card {
+        padding: 20px;
+    }
+}
